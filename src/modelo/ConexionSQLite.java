@@ -11,7 +11,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class ConexionSQLite {
+public class ConexionSQLite implements ConexionGenerica {
     private static ConexionSQLite conexionSQLite;
     private static Connection conexion;
     private ConexionSQLite() {
@@ -37,11 +37,13 @@ public class ConexionSQLite {
         return conexionSQLite;
     }
 
+    @Override
     public Connection getConexion() {
         return conexion;
     }
 
-    public void cerrarConexion () {
+    @Override
+    public void cerrarConexion() {
         if (conexion != null) {
             try {
                 conexion.close();
